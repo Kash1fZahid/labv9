@@ -33,19 +33,40 @@ just the pointer pointing to the array of letters is assigned to str.
 
 */
 
+// Online C compiler to run C program online
 #include <stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <string.h>
+#include <stdlib.h>
+ char* copystring(char *string)
+ {
+     int length = strlen(string);
+     char* newstring = (char*)malloc((length+1) * sizeof(char));
+     for(int i=0;i<(length+1);i++){
+        newstring[i] = string[i];
+     }
+    return newstring;
+ }
+ char* stringcat(char *input1,char *input2)
+ {
+     int length1 = strlen(input1);
+     int length2 = strlen(input2);
+     char* newstring = (char*)malloc((length1+length2+1) * sizeof(char));
+        for(int i=0;i<(length1);i++){
+            newstring[i] = input1[i];
+        }
+        for(int i=0;i<(length2+1);i++){
+            newstring[length1+i] = input2[i];
+        }
+    return newstring;
+ }
+ 
+int main() {
+    char qw[] = "kashif";
+    char* new1 = copystring(qw);
+    printf("%s\n", new1);
+    printf("%s\n", qw);
+    char* new2 = stringcat(qw,new1);
+    printf("%s\n", new2);
 
-_____ copystring(_____ input){
-//length? strlen()
-//allocate how many chars EXACTLY?
-//copy strcpy()
-}
-int main(){
-char* s="Hello word";//as in lecture a pointer to an immutable object places in global memory
-char* dynamic_str=copystring(s); //create a dynamic version
-printf("%s",dynamic_str);
-//allocation need to be released!
-  return 0;
+    return 0;
 }
